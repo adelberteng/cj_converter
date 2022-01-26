@@ -1,15 +1,10 @@
 package main
 
 import (
-	// "encoding/csv"
-	// "encoding/json"
-	// "errors"
 	"flag"
 	"fmt"
-	// "io/ioutil"
 	"log"
 	"os"
-	// "path/filepath"
 	"time"
 
 	config "gopkg.in/ini.v1"
@@ -72,16 +67,11 @@ func main() {
 		if err != nil {
 			logger.Error(err)
 		}
-		logger.Info(jsonData)
 
 		err = j.WriteTo(jsonData, *csvPath)
 		if err != nil {
 			fmt.Println(err)
 		}
-
-		// headerKeysWithOrder := []string{"ID", "FirstName", "LastName", "Phone", "Email", "Role", "Description"}
-		// newCsvWithOrderPath := "sample_data/new_sample_with_order.csv"
-		// j.WriteWithOrder(jsonData, newCsvWithOrderPath, headerKeysWithOrder)
 	} else if *from == "" {
 		logger.Error("Please add '-from json' or '-from csv' after cmd!")
 	} else {
