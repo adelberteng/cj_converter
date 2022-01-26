@@ -1,0 +1,36 @@
+2022/01/24 15:00:46 DEBUG: a
+2022/01/24 15:00:55 DEBUG: a
+2022/01/24 15:00:57 DEBUG: a
+2022/01/24 15:05:11 DEBUG: a
+2022/01/24 15:05:16 DEBUG: a
+2022/01/24 15:26:52 [DEBUG] 
+2022/01/24 15:26:52 1
+2022/01/24 15:26:52 Error: the csv path is not exist!
+2022/01/24 15:27:54 [DEBUG] 
+2022/01/24 15:27:54 1
+2022/01/24 15:27:54 [ERROR] 
+2022/01/24 15:27:54 the csv path is not exist!
+2022/01/24 15:28:42 [DEBUG] 1
+2022/01/24 15:28:42 [ERROR] 
+2022/01/24 15:28:42 the csv path is not exist!
+2022/01/24 15:31:05 [DEBUG]  1
+2022/01/24 15:31:05 [ERROR]  the csv path is not exist!
+2022/01/24 15:33:23 [DEBUG]  1
+2022/01/24 15:33:23 [ERROR]  the csv path is not exist!
+2022/01/24 15:34:19 [DEBUG]  1
+2022/01/24 15:34:19 [ERROR]  the csv path is not exist!
+2022/01/24 15:35:32 [DEBUG]  1
+2022/01/24 15:35:32 [ERROR]  the csv path is not exist!
+2022/01/24 15:37:48 [ERROR]  the csv path is not exist!
+2022/01/24 15:37:58 [ERROR]  please provide valid json path!
+2022/01/24 15:38:21 [INFO]  Data write in json file successfully!
+2022/01/24 15:54:48 [INFO]  Data write in json file successfully!
+2022/01/24 17:31:23 [ERROR]  Please entry '-from json' or '-from csv' after cmd!
+2022/01/24 17:31:32 [ERROR]  Please entry '-from json' or '-from csv' after cmd!
+2022/01/24 17:32:14 [ERROR]  Please entry '-from json' or '-from csv' after cmd!
+2022/01/24 17:32:21 [ERROR]  Please entry '-from json' or '-from csv' after cmd!
+2022/01/25 11:32:50 go_logger.go:58: [ERROR]  Please add '-from json' or '-from csv' after cmd!
+2022/01/25 13:30:13 go_logger.go:58: [ERROR]  Please add '-from json' or '-from csv' after cmd!
+/var/folders/zb/7ym77s2d7k73xt186m6xnvcr0000gn/T/go-build2218472159/b001/exe/main2022/01/25 14:04:42 [ERROR]  Please add '-from json' or '-from csv' after cmd!
+/var/folders/zb/7ym77s2d7k73xt186m6xnvcr0000gn/T/go-build3375353469/b001/exe/main2022/01/25 14:05:15 [ERROR]  Please add '-from json' or '-from csv' after cmd!
+2022/01/25 14:23:41 [ERROR]  Please add '-from json' or '-from csv' after cmd!
