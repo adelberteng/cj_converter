@@ -1,5 +1,5 @@
-github.com/adelberteng/go_logger v0.0.0-20220125054226-5ec1a7ca43ad h1:qY4tb4ZvW/AmeE+lAgm2u1vIzkLOi4KhEuVqGTZNEuM=
-github.com/adelberteng/go_logger v0.0.0-20220125054226-5ec1a7ca43ad/go.mod h1:85+FxwTnMVYbw6IM54UX3Rllx4Q2lhXaQNultb/Sqr0=
+github.com/adelberteng/go_logger v0.0.0-20220207074843-5ab4b651cc1c h1:q0OQRpI1NO6qQgz+8ASfc0BEZgueHyFR9Ym0yqBzZi0=
+github.com/adelberteng/go_logger v0.0.0-20220207074843-5ab4b651cc1c/go.mod h1:85+FxwTnMVYbw6IM54UX3Rllx4Q2lhXaQNultb/Sqr0=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

@@ -14,8 +14,7 @@ A cli tool for converting format from csv or json to another type in Golang.
 
 ## Overview
 ---
-This tool will take csv file path, read data from csv format, convert it to JSON format, and save into a assign path. The JSON file is contains an array of JSON objects, one CSV line corresponds to one JSON object.
-
+This tool will take csv or json file path, read data from specify format, convert it to another format, and save into a assign path.
 
 ## Requirements
 ---
@@ -23,16 +22,24 @@ This tool will take csv file path, read data from csv format, convert it to JSON
 
 CSV format example:
 ```
-
+Uid,Name,Gender,Age
+1,Albert,Male,28
+2,Alice,Female,20
+3,Bob,Male,30
+4,Charlie,Male,40
 ```
 
 ## Usage
 ---
 ``` bash
 # compiles the go package
-go build 
+go build -o cj_converter
 
-# pick a csv file path and assign the destination for json file.
+# choose from-type as csv, pick a csv file path and assign the destination for json file.
+./cj_converter -from csv -csv sample/sample_origin.csv -json sample/sample.json
+
+# json to csv
+./cj_converter -from json -json sample/sample.json -csv sample/sample.csv 
 
 ```
 

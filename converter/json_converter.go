@@ -10,71 +10,74 @@ import (
 type JSONConverter struct {}
 
 
-func (j *JSONConverter) Read(json_path string) ([]map[string]string, error) {
-	var json_data []map[string]string
+func (j *JSONConverter) Read(jsonPath string) ([]map[string]string, error) {
+	var jsonData []map[string]string
 
-	json_file, err := os.Open(json_path)
+	jsonFile, err := os.Open(jsonPath)
 	if err != nil {
 		return []map[string]string{}, err
 	}
-	defer json_file.Close()
+	defer jsonFile.Close()
 
-	json_bytedata, _ := ioutil.ReadAll(json_file)
-	json.Unmarshal([]byte(json_bytedata), &json_data)
+	jsonByteData, _ := ioutil.ReadAll(jsonFile)
+	json.Unmarshal([]byte(jsonByteData), &jsonData)
 
-	return json_data, nil
+	return jsonData, nil
 }
 
-func (j *JSONConverter) WriteTo(json_data []map[string]string, csv_path string) error {
-	header_keys := []string{}
-	for k := range json_data[0] {
-		header_keys = append(header_keys, []string{k}...)
+func (j *JSONConverter) WriteTo(jsonData []map[string]string, csvPath string) error {
+	headerKeys := []string{}
+	for k := range jsonData[0] {
+		headerKeys = append(headerKeys, []string{k}...)
 	}
 
-	csv_output_file, err := os.Create(csv_path)
+	csvOutputFile, err := os.Create(csvPath)
 	if err != nil {
 		return err
 	}
-	defer csv_output_file.Close()
+	defer csvOutputFile.Close()
 
-	writer := csv.NewWriter(csv_output_file)
+	writer := csv.NewWriter(csvOutputFile)
 	defer writer.Flush()
 
-	if err := writer.Write(header_keys); err != nil {
+	err = writer.Write(headerKeys)
+	if err != nil {
 		return err
 	}
 
-	for _, row := range json_data {
-		var row_data []string
-		for _, k := range header_keys {
-			row_data = append(row_data, row[k])
+	for _, row := range jsonData {
+		var rowData []string
+		for _, k := range headerKeys {
+			rowData = append(rowData, row[k])
 		}
-		if err := writer.Write(row_data); err != nil {
+		if err := writer.Write(rowData); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (j *JSONConverter) WriteWithOrder(json_data []map[string]string, csv_path string, header_keys []string) error {
-	csv_output_file, err := os.Create(csv_path)
+func (j *JSONConverter) WriteWithOrder(jsonData []map[string]string, csvPath string, headerKeys []string) error {
+	csvOutputFile, err := os.Create(csvPath)
 	if err != nil {
 		return err
 	}
-	defer csv_output_file.Close()
-	writer := csv.NewWriter(csv_output_file)
+	defer csvOutputFile.Close()
+	writer := csv.NewWriter(csvOutputFile)
 	defer writer.Flush()
 
-	if err := writer.Write(header_keys); err != nil {
+	err = writer.Write(headerKeys)
+	if err != nil {
 		return err
 	}
 
-	for _, row := range json_data {
-		var row_data []string
-		for _, k := range header_keys {
-			row_data = append(row_data, row[k])
+	for _, row := range jsonData {
+		var rowData []string
+		for _, k := range headerKeys {
+			rowData = append(rowData, row[k])
 		}
-		if err := writer.Write(row_data); err != nil {
+		err = writer.Write(rowData)
+		if err != nil {
 			return err
 		}
 	}

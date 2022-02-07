@@ -33,7 +33,7 @@ func main() {
 		log.Fatalf("log file open error : %v", err)
 	}
 	defer logFile.Close()
-	logger := goLogger.CreateLogger(logFile, "debug", "")
+	logger := goLogger.CreateLogger(logFile, "debug")
 
 	var from = flag.String("from", "", "from")
 	var csvPath = flag.String("csv", "", "csvPath")
