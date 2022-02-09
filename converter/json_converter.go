@@ -1,14 +1,13 @@
 package converter
 
 import (
-	"os"
-	"io/ioutil"
 	"encoding/csv"
 	"encoding/json"
+	"io/ioutil"
+	"os"
 )
 
-type JSONConverter struct {}
-
+type JSONConverter struct{}
 
 func (j *JSONConverter) Read(jsonPath string) ([]map[string]string, error) {
 	var jsonData []map[string]string

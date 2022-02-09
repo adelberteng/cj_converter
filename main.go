@@ -13,7 +13,6 @@ import (
 	goLogger "github.com/adelberteng/go_logger"
 )
 
-
 func main() {
 	start_time := time.Now()
 

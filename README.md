@@ -1,4 +1,4 @@
-# cj-converter
+# CJ Converter (csv and json converter) [under development]
 A cli tool for converting format from csv or json to another type in Golang.
 
 

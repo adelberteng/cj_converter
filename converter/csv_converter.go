@@ -1,16 +1,15 @@
 package converter
 
 import (
-	"os"
-	"errors"
-	"path/filepath"
 	"encoding/csv"
 	"encoding/json"
+	"errors"
 	"log"
+	"os"
+	"path/filepath"
 )
 
-
-type CSVConverter struct {}
+type CSVConverter struct{}
 
 func (c *CSVConverter) Read(csv_path string) ([][]string, error) {
 	if _, err := os.Stat(csv_path); os.IsNotExist(err) {
@@ -69,7 +68,7 @@ func (c *CSVConverter) WriteTo(json_data interface{}, json_path string) error {
 		return err
 	}
 	defer json_file.Close()
-	
+
 	_, err = json_file.WriteString(string(j))
 	if err != nil {
 		log.Fatal(err)
