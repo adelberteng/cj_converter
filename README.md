@@ -5,6 +5,7 @@ A cli tool for converting format from csv or json to another type in Golang.
 <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
 <ol>
   <li><a href="#overview">Overview</a></li>
+  <li><a href="#progress">Progress</a></li>
   <li><a href="#requirements">Requirements</a></li>
   <li><a href="#usage">Usage</a></li>
   <li><a href="#tests">Tests</a></li>
@@ -16,10 +17,24 @@ A cli tool for converting format from csv or json to another type in Golang.
 ---
 This tool will take csv or json file path, read data from specify format, convert it to another format, and save into a assign path.
 
+
+
+## Progress
+---
+main:
++ [ ] main program   
+
+converter module:
++ [x] csv2json converter
++ [x] json2csv converter  
+
+tests:
++ [ ] unittest
+   
+   
+
 ## Requirements
 ---
-
-
 CSV format example:
 ```
 Uid,Name,Gender,Age
