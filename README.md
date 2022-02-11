@@ -62,6 +62,7 @@ go build -o cj_converter
 ## Tests
 ---
 ``` bash
+cd converter/
 go test -v
 ```
 
