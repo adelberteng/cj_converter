@@ -11,65 +11,65 @@ import (
 
 type CSVConverter struct{}
 
-func (c *CSVConverter) Read(csv_path string) ([][]string, error) {
-	if _, err := os.Stat(csv_path); os.IsNotExist(err) {
+func (c *CSVConverter) Read(csvPath string) ([][]string, error) {
+	if _, err := os.Stat(csvPath); os.IsNotExist(err) {
 		return [][]string{}, errors.New("the csv path is not exist!")
-	} else if file_extension := filepath.Ext(csv_path); file_extension != ".csv" {
+	} else if file_extension := filepath.Ext(csvPath); file_extension != ".csv" {
 		return [][]string{}, errors.New("please provide valid csv path!")
 	}
 
-	csv_file, err := os.Open(csv_path)
+	csvFile, err := os.Open(csvPath)
 	if err != nil {
 		log.Fatal(err)
 		return [][]string{}, errors.New("error happened while opening file.")
 	}
-	defer csv_file.Close()
+	defer csvFile.Close()
 
-	csvReader := csv.NewReader(csv_file)
-	csv_data, err := csvReader.ReadAll()
+	csvReader := csv.NewReader(csvFile)
+	csvData, err := csvReader.ReadAll()
 	if err != nil {
 		log.Fatal(err)
 		return [][]string{}, errors.New("error happened while reading csv.")
 	}
 
-	return csv_data, nil
+	return csvData, nil
 }
 
-func (c *CSVConverter) ConvertTo(csv_data [][]string) ([]map[string]string, error) {
-	if len(csv_data) == 0 {
+func (c *CSVConverter) ConvertTo(csvData [][]string) ([]map[string]string, error) {
+	if len(csvData) == 0 {
 		return []map[string]string{}, errors.New("csv have no content, please check csv content.")
-	} else if len(csv_data) == 1 {
+	} else if len(csvData) == 1 {
 		return []map[string]string{}, errors.New("csv rows less than 1, please check csv content.")
 	}
 
-	var json_data []map[string]string
+	var jsonData []map[string]string
 
-	csv_header := csv_data[0]
-	for _, row := range csv_data[1:] {
-		row_map := make(map[string]string)
+	csv_header := csvData[0]
+	for _, row := range csvData[1:] {
+		rowMap := make(map[string]string)
 		for idx, col := range row {
-			row_map[csv_header[idx]] = col
+			rowMap[csv_header[idx]] = col
 		}
-		json_data = append(json_data, row_map)
+		jsonData = append(jsonData, rowMap)
 	}
 
-	return json_data, nil
+	return jsonData, nil
 }
 
-func (c *CSVConverter) WriteTo(json_data interface{}, json_path string) error {
-	if file_extension := filepath.Ext(json_path); file_extension != ".json" {
+func (c *CSVConverter) WriteTo(jsonData interface{}, jsonPath string) error {
+	if fileExtension := filepath.Ext(jsonPath); fileExtension != ".json" {
 		return errors.New("please provide valid json path!")
 	}
 
-	j, _ := json.Marshal(json_data)
-	json_file, err := os.Create(json_path)
+	j, _ := json.Marshal(jsonData)
+	jsonFile, err := os.Create(jsonPath)
 	if err != nil {
 		log.Fatal(err)
 		return err
 	}
-	defer json_file.Close()
+	defer jsonFile.Close()
 
-	_, err = json_file.WriteString(string(j))
+	_, err = jsonFile.WriteString(string(j))
 	if err != nil {
 		log.Fatal(err)
 		return err

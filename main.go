@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	start_time := time.Now()
+	startTime := time.Now()
 
 	cfg, err := config.Load("conf/config.ini")
 	if err != nil {
@@ -25,7 +25,7 @@ func main() {
 	logName := cfg.Section("dev").Key("log_file_name").String()
 
 	os.MkdirAll(logDir, 0766)
-	logFile, err := os.OpenFile(logDir+"/"+logName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0766)
+	logFile, err := os.OpenFile(logDir+"/"+logName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil && err == os.ErrNotExist {
 		os.Create(logDir + "/" + logName)
 	} else if err != nil {
@@ -77,5 +77,5 @@ func main() {
 		logger.Error("wrong 'from' value.")
 	}
 
-	fmt.Println("Program running time: " + time.Now().Sub(start_time).String())
+	fmt.Println("Program running time: " + time.Now().Sub(startTime).String())
 }
