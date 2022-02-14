@@ -1,4 +1,4 @@
-# CJ Converter (csv and json converter) [under development]
+# CJ Converter (csv and json converter)
 A cli tool for converting format from csv or json to another type in Golang.
 
 
@@ -12,15 +12,10 @@ A cli tool for converting format from csv or json to another type in Golang.
   <li><a href="#contact">Contact</a></li>
 </ol>
 
-
 ## Overview
----
 This tool will take csv or json file path, read data from specify format, convert it to another format, and save into a assign path.
 
-
-
 ## Progress
----
 main:
 + [x] main program   
 
@@ -34,7 +29,6 @@ tests:
    
 
 ## Requirements
----
 CSV format example:
 ```
 Uid,Name,Gender,Age
@@ -63,7 +57,6 @@ json format example:
 ```
 
 ## Usage
----
 ``` bash
 # compiles the go package
 go build -o cj_converter
@@ -76,15 +69,11 @@ go build -o cj_converter
 
 ```
 
-
 ## Tests
----
 ``` bash
 cd converter/
 go test -v
 ```
 
-
 ## Contact
----
 email: adelberteng@gmail.com
