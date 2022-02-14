@@ -22,14 +22,14 @@ This tool will take csv or json file path, read data from specify format, conver
 ## Progress
 ---
 main:
-+ [ ] main program   
++ [x] main program   
 
 converter module:
 + [x] csv2json converter
 + [x] json2csv converter  
 
 tests:
-+ [ ] unittest
++ [x] unittest
    
    
 

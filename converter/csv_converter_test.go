@@ -81,7 +81,7 @@ func TestCSVConverter_ConvertTo(t *testing.T) {
 				},
 			},
 			[]map[string]string{
-				{"Uid":"1", "Name":"Albert", "Gender":"Male", "Age":"28"},
+				{"Uid": "1", "Name": "Albert", "Gender": "Male", "Age": "28"},
 			},
 			false,
 		},
@@ -135,12 +135,37 @@ func TestCSVConverter_WriteTo(t *testing.T) {
 		args    args
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			"normal",
+			&CSVConverter{},
+			args{
+				[]map[string]string{
+					{"Uid": "1", "Name": "Albert", "Gender": "Male", "Age": "28"},
+				},
+				"../sample/sample_for_test.json",
+			},
+			false,
+		},
+		{
+			"invalid json path",
+			&CSVConverter{},
+			args{
+				[]map[string]string{
+					{"Uid": "1", "Name": "Albert", "Gender": "Male", "Age": "28"},
+				},
+				"../sample/sample_for_test.csv",
+			},
+			true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &CSVConverter{}
-			if err := c.WriteTo(tt.args.json_data, tt.args.json_path); (err != nil) != tt.wantErr {
+			err := c.WriteTo(tt.args.json_data, tt.args.json_path)
+			if err != nil {
+				fmt.Println("testcase err info: ", err)
+			}
+			if (err != nil) != tt.wantErr {
 				t.Errorf("CSVConverter.WriteTo() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
