@@ -24,61 +24,58 @@ func (j *JSONConverter) Read(jsonPath string) ([]map[string]string, error) {
 	return jsonData, nil
 }
 
-func (j *JSONConverter) WriteTo(jsonData []map[string]string, csvPath string) error {
+func (j *JSONConverter) ConvertTo(jsonData []map[string]string) [][]string {
+	var csvData [][]string
+
 	headerKeys := []string{}
 	for k := range jsonData[0] {
-		headerKeys = append(headerKeys, []string{k}...)
+		headerKeys = append(headerKeys, k)
 	}
 
-	csvOutputFile, err := os.Create(csvPath)
-	if err != nil {
-		return err
-	}
-	defer csvOutputFile.Close()
-
-	writer := csv.NewWriter(csvOutputFile)
-	defer writer.Flush()
-
-	err = writer.Write(headerKeys)
-	if err != nil {
-		return err
-	}
-
+	csvData = append(csvData, headerKeys)
 	for _, row := range jsonData {
 		var rowData []string
 		for _, k := range headerKeys {
 			rowData = append(rowData, row[k])
 		}
-		if err := writer.Write(rowData); err != nil {
-			return err
-		}
+		csvData = append(csvData, rowData)
 	}
-	return nil
+
+	return csvData
 }
 
-func (j *JSONConverter) WriteWithOrder(jsonData []map[string]string, csvPath string, headerKeys []string) error {
-	csvOutputFile, err := os.Create(csvPath)
-	if err != nil {
-		return err
-	}
-	defer csvOutputFile.Close()
-	writer := csv.NewWriter(csvOutputFile)
-	defer writer.Flush()
+// ConvertWithOrder be used when you need specific order with header or only need specific columns.
+func (j *JSONConverter) ConvertWithOrder(jsonData []map[string]string, headerKeys []string) [][]string {
+	var csvData [][]string
 
-	err = writer.Write(headerKeys)
-	if err != nil {
-		return err
-	}
-
+	csvData = append(csvData, headerKeys)
 	for _, row := range jsonData {
 		var rowData []string
 		for _, k := range headerKeys {
 			rowData = append(rowData, row[k])
 		}
-		err = writer.Write(rowData)
+		csvData = append(csvData, rowData)
+	}
+
+	return csvData
+}
+
+func (j *JSONConverter) WriteTo(csvData [][]string, csvPath string) error {
+	csvFile, err := os.Create(csvPath)
+	if err != nil {
+		return err
+	}
+	defer csvFile.Close()
+
+	writer := csv.NewWriter(csvFile)
+	defer writer.Flush()
+
+	for _, row := range csvData {
+		err = writer.Write(row)
 		if err != nil {
 			return err
 		}
 	}
+
 	return nil
 }

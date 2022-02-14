@@ -3,40 +3,23 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"time"
 
-	config "gopkg.in/ini.v1"
-
 	"github.com/adelberteng/cj_converter/converter"
-	goLogger "github.com/adelberteng/go_logger"
+	"github.com/adelberteng/cj_converter/utils"
 )
+
+var logger = utils.GetLogger()
 
 func main() {
 	startTime := time.Now()
 
-	cfg, err := config.Load("conf/config.ini")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	logDir := cfg.Section("dev").Key("log_dir").String()
-	logName := cfg.Section("dev").Key("log_file_name").String()
-
-	os.MkdirAll(logDir, 0766)
-	logFile, err := os.OpenFile(logDir+"/"+logName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	if err != nil && err == os.ErrNotExist {
-		os.Create(logDir + "/" + logName)
-	} else if err != nil {
-		log.Fatalf("log file open error : %v", err)
-	}
-	defer logFile.Close()
-	logger := goLogger.CreateLogger(logFile, "debug")
-
-	var from = flag.String("from", "", "from")
-	var csvPath = flag.String("csv", "", "csvPath")
-	var jsonPath = flag.String("json", "", "jsonPath")
+	var (
+		from = flag.String("from", "", "from")
+		csvPath = flag.String("csv", "", "csvPath")
+		jsonPath = flag.String("json", "", "jsonPath")
+	)
 	flag.Parse()
 
 	if *from == "csv" {
@@ -67,10 +50,14 @@ func main() {
 			logger.Error(err)
 		}
 
-		err = j.WriteTo(jsonData, *csvPath)
+		csvData := j.ConvertTo(jsonData)
+
+		err = j.WriteTo(csvData, *csvPath)
 		if err != nil {
-			fmt.Println(err)
+			logger.Error(err)
 		}
+
+		logger.Info("Data write in csv file successfully!")
 	} else if *from == "" {
 		logger.Error("Please add '-from json' or '-from csv' after cmd!")
 	} else {
