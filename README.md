@@ -44,6 +44,24 @@ Uid,Name,Gender,Age
 4,Charlie,Male,40
 ```
 
+json format example:
+```
+[
+  {
+    "Uid":"1",
+    "Name":"Albert",
+    "Gender":"Male",
+    "Age":"28"
+  },
+  {
+    "Uid":"2",
+    "Name":"Alice",
+    "Gender":"Female",
+    "Age":"20"
+  }
+]
+```
+
 ## Usage
 ---
 ``` bash
